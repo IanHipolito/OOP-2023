@@ -13,11 +13,16 @@ public class Main
 	{
 		System.out.println("Hello world");
 		
-		Dog penny = new Dog();
-		penny.setName("Penny");
-		penny.speak();
+		Cat ginger = new Cat();
+		ginger.setName("Ginger");
+		ginger.setnumLives(9);
 
 		helloProcessing();
+
+		while(ginger.getnumLives() > 0)
+		{
+			ginger.Kill();
+		}
 	}
 	
 }
