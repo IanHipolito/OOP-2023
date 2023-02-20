@@ -5,9 +5,12 @@ import processing.core.PApplet;
 public class Loops extends PApplet {
 
 	int mode = 0;
+	int rectSize = 100;
+	int rectX = width / 2 - rectSize / 2;
+	int rectY = height / 2 - rectSize / 2;
 
 	public void settings() {
-		size(1000, 1000);
+		size(800, 800);
 		//fullScreen(SPAN);
 	}
 
@@ -44,8 +47,30 @@ public class Loops extends PApplet {
 				off += (mouseY / 50.0f);
 				break;
 			case 1:
+					//First If statement exercise
+					fill(255, 100, 100);
+					rect(rectX, rectY, rectSize, rectSize);
+
+					if(mouseX >= rectX && mouseX <= rectX + rectSize && mouseY >= rectY && mouseY <= rectY + rectSize)
+					{
+						
+					}
 				break;
-			default:
+			case 2:
+					//Second If statement exercise
+					fill(255, 100, 100);
+					rect(rectX, rectY, rectSize, rectSize);
+					
+					if(mouseX >= rectX && mouseX <= rectX + rectSize && mouseY >= rectY && mouseY <= rectY + rectSize)
+					{
+						rectX = (int) random(width - rectSize);
+						rectY = (int) random(height - rectSize);
+						println("Mouse is inside rectangle");
+					}
+					else
+					{
+						println("Mouse is outside rectangle");
+					}
 				break;
 		}
 
