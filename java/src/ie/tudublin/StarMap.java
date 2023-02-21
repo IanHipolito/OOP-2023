@@ -62,14 +62,16 @@ public class StarMap extends PApplet {
     Star second = null;
 
 
-
     public void mouseClicked()
     {
+        //The code iterates through an array of "Star" objects called "stars" using a for-each loop.
         for(Star s:stars)
         {
+            //For each "Star" object in the "stars" array, the code maps its x and y coordinates.
             float x = map(s.getxG(), -5, 5, border, width - border);
             float y = map(s.getyG(), -5, 5, border, height - border);
 
+            //The code then calculates the distance between the mouse position and the mapped coordinates of the "Star" object using the "dist()" function.
             if (dist(mouseX, mouseY, x, y) < 20)
             {
                 if (first == null)
