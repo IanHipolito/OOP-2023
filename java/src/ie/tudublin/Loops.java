@@ -72,6 +72,58 @@ public class Loops extends PApplet {
 						println("Mouse is outside rectangle");
 					}
 				break;
+			case 3:
+					//Third If statement exercise
+				break;
+			case 4:
+					//Using a for loop, rect and the HSB colour space to make moving bars.
+					int bars = (int) (mouseX / 10.0f);
+					float barWidth = width / (float) bars;
+
+					for(int i = 0; i < bars; i++)
+					{
+						noStroke();
+						fill(map(i, 0, bars, 0, 255), 255, 255);
+						rect(map(i, 0, bars, 0, width), 0, barWidth, height);
+					}
+				break;
+			case 5:
+					//Using a for loop, rect and the HSB colour space that react to mouse position 
+					int squares = (int) (mouseX / 10.0f);
+					float squareHeight = width / (float) squares;
+
+					for(int i = 0; i < squares; i++)
+					{
+						for(int j = 0; j < squares; j++)
+						{
+							noStroke();
+							fill(map(i, 0, squares, 0, 255), 255, 255);
+							float x = map(i, 0, squares, 0, width);
+							rect(x, x, squareHeight, squareHeight);
+							rect((width - squareHeight) - x, x, squareHeight, squareHeight);
+						}
+					}
+
+				break;
+			case 6:
+					//Using for loop to create a grid
+					stroke(255, 255, 255);
+					textAlign(CENTER, CENTER);
+					textSize(20);
+
+					float border = 50.0f;
+
+					//Grid lines go from -5 parcecs to 5 parsecs on the x and y axis
+					for(int i = -5; i <=5; i ++)
+					{
+						float x = map(i, -5, 5, border, width - border);
+						line(x, border, x, height - border);
+						line(border, x, width - border, x);
+						fill(100);
+						text(i, x, border * 0.5f);
+						text(i, border * 0.5f, x);
+					}
+				break;
 		}
 
 	}
