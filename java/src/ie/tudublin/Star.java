@@ -16,11 +16,14 @@ public class Star
     
 
     @Override
+    //toString method to display the relevant information about the stars
     public String toString() {
         return "Star [absMag=" + absMag + ", displayName=" + displayName + ", distance=" + distance + ", hab=" + hab
                 + ", xG=" + xG + ", yG=" + yG + ", zG=" + zG + "]";
     }
 
+    //Class called Star to encapsulate the columns of interest from a single row from the file.
+    //Constructor that takes TableRow as a parameter and assigns the fields in the class from the appropriate columns.
     public Star(TableRow tr)
     {
         this(

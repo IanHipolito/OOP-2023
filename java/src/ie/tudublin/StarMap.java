@@ -10,15 +10,19 @@ import processing.data.*;
 
 public class StarMap extends PApplet {
 
+    //Global variable 
     ArrayList<Star> stars = new ArrayList<Star>();
     
     public float border;
 
+    //Code to draw the gridlines with labels 
     void drawGrid()
     {
         stroke(255, 255, 255);
         textAlign(CENTER, CENTER);
         textSize(20);
+
+        //Grid lines go from -5 parcecs to 5 parsecs on the x and y axis
         for(int i = -5; i <=5; i ++)
         {
             float x = map(i, -5, 5, border, width - border);
@@ -30,6 +34,7 @@ public class StarMap extends PApplet {
         }
     }
 
+    //Prints contents of of the ArrayList and is called from setup
     void printStars()
     {
         for(Star s:stars)
@@ -38,7 +43,8 @@ public class StarMap extends PApplet {
         }
     }
 
-    void loadStars()
+    //Method that loads the data from the CSV file and is called from setup
+    void loadData()
     {
         Table table = loadTable("HabHYG15ly.csv", "header");
         for(TableRow r:table.rows())
@@ -88,7 +94,7 @@ public class StarMap extends PApplet {
 
     public void setup() {
         colorMode(RGB);
-        loadStars();
+        loadData();
         printStars();
 
         border = width * 0.1f;
@@ -102,18 +108,22 @@ public class StarMap extends PApplet {
         }
     }
 
+    //Plot the stars onto the grid
     public void draw() 
     {
         background(0);
         drawGrid();
         drawStars();
-
+        
+        //The code first maps the x and y coordinates of "first" (obtained from calling its "getxG()" and "getyG()" methods) from a range of -5 to 5 to a range of "border" to "width - border" and "border" to "height - border".
         if (first != null)
         {
 
             float x = map(first.getxG(), -5, 5, border, width - border);
             float y = map(first.getyG(), -5, 5, border, height - border);
 
+            //If a variable "second" is not null, the code then maps the x and y coordinates of "second" in the same way as for "first", and draws a line between the two points.
+            //The code also calculates the distance between "first" and "second" using their x, y, and z coordinates (obtained from calling their "getxG()", "getyG()", and "getzG()" methods) and assigns it to a variable "dist".
             if (second != null)
             {
                 float x2 = map(second.getxG(), -5, 5, border, width - border);
@@ -123,7 +133,8 @@ public class StarMap extends PApplet {
                 line(x, y, x2, y2);
 
                 float dist = dist(first.getxG(), first.getyG(), first.getzG(), second.getxG(), second.getyG(), second.getzG());
-
+                
+                //Displays the distance between "first" and "second" with their display names (obtained from calling their "getDisplayName()" methods) in the center of the screen using white text color.
                 fill(255);
                 textAlign(CENTER, CENTER);
                 text("Distance between: " + first.getDisplayName() + " and " + second.getDisplayName() + " is " + dist + " parsecs", width / 2, height - (border * 0.5f));
