@@ -62,10 +62,15 @@ public class Audio1 extends PApplet
     public void draw()
     {
         //background(0);
+        //half the height of the screen
         float halfH = height / 2;
+        //half the width of the screen
         float average = 0;
+        //average of the samples within the buffer
         float sum = 0;
+        //increment the offset
         off += 1;
+
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
         for(int i = 0 ; i < ab.size() ; i ++)
@@ -75,7 +80,7 @@ public class Audio1 extends PApplet
         average= sum / (float) ab.size();
 
         smoothedAmplitude = lerp(smoothedAmplitude, average, 0.1f);
-        
+
         float cx = width / 2;
         float cy = height / 2;
 
@@ -92,9 +97,75 @@ public class Audio1 extends PApplet
                 }
                 break;
         case 1:
-            background(0);            
+            background(0);  
+            for (int i = 0; i < ab.size(); i++) 
+            {
+                float c = map(i, 0, ab.size(), 0, 255);
+                stroke(c, 255, 255);
+                float f = ab.get(i) * halfH;
+                line(i, halfH + f, halfH - f, i);
+            }
             break;
+        case 2:
+            background(0);
+            for(int i = 0; i < ab.size(); i++)
+            {
+                float c = map(i, 0, ab.size(), 0, 255);
+                stroke(c, 255, 255);
+                float f = ab.get(i) * height;
+                line(i, 0 + f, i, 0 );
+                line(i, height + f, i, height - f);
+                line(width + f, i, width - f, i);
+                line(f, i, -f, i);
+            }
 
+            break;
+        case 3:
+            background(0);
+            for(int i = 0; i < ab.size(); i++)
+            {
+                float f = ab.get(i) * halfH;
+                stroke(f, 255, 255);
+                fill(0);
+                circle(cx, cy, smoothedAmplitude * height);
+            }
+
+            break;
+        case 4:
+            background(0);
+            for (int i = 0; i < ab.size(); i++) {
+                float f = ab.get(i) * halfH;
+                stroke(f, 255, 255);
+                fill(0);
+                rectMode(CENTER);
+                rect(cx, cy, smoothedAmplitude * height, smoothedAmplitude * height);
+            }
+
+            break;
+        case 5:
+            float halfW = width / 2;
+            background(0);
+            for(int i = 0; i < ab.size(); i++)
+            {
+                float f = ab.get(i) * halfH;
+                stroke(f, 255, 255);
+                fill(0);
+                line(cx + halfW, halfH + f, cx - halfW, halfH - f);
+                line(f + halfW, halfH + cx, f - halfW, halfH - cx);
+                line(halfH - cx, f - halfW, halfH + cx, f + halfW);
+                line(i, halfH + f, i, halfH - f);  
+                rectMode(CENTER);
+                rect(cx / 2, cy / 2, smoothedAmplitude * height * 2, smoothedAmplitude * height * 2);
+                rect((cx / 2) + halfW, cy / 2, smoothedAmplitude * height * 2, smoothedAmplitude * height * 2);
+                rect(cx / 2, (cy / 2) + halfH, smoothedAmplitude * height * 2, smoothedAmplitude * height * 2);
+                rect((cx / 2) + halfW, (cy / 2) + halfH, smoothedAmplitude * height * 2, smoothedAmplitude * height * 2);
+                circle(cx / 2, cy / 2, smoothedAmplitude * height * 2);
+                circle((cx / 2) + halfW, cy / 2, smoothedAmplitude * height * 2);
+                circle(cx / 2, (cy / 2) + halfH, smoothedAmplitude * height * 2);
+                circle((cx / 2) + halfW, (cy / 2) + halfH, smoothedAmplitude * height * 2); 
+            }
+            
+            break;
         }
         
 
