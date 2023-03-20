@@ -39,6 +39,11 @@ public class Main
         processing.core.PApplet.runSketch( a, new Audio2());
     }
 
+	public static void audio3()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Audio3());
+    }
 
 	public static void life()
 	{
@@ -60,11 +65,7 @@ public class Main
 		penny.setName("Penny");
 		penny.speak();
 
-<<<<<<< HEAD
-		audio2();
-=======
 		starMap();
->>>>>>> a9ccc1b290562e9ccc25ba572fa40e82071536b7
 	}
 	
 }
