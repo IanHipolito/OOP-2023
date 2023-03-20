@@ -39,12 +39,12 @@ public class Main
         processing.core.PApplet.runSketch( a, new Audio2());
     }
 
-
 	public static void life()
 	{
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Life());
     }
+
 	
 	public static void main(String[] args)
 	{
