@@ -57,7 +57,19 @@ public class Main
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new StickFigure());
     }
-	
+
+	// public static void rockettest()
+	// {
+	// 	String[] a = {"MAIN"};
+	// 	processing.core.PApplet.runSketch( a, new RocketTest());
+	// }
+
+	public static void starsassign()
+	{
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new StarFieldAssignment());
+	}
+
 	public static void main(String[] args)
 	{
 		System.out.println("Hello world");
@@ -66,7 +78,7 @@ public class Main
 		penny.setName("Penny");
 		penny.speak();
 
-		stickfigure();
+		starsassign();
 	}
 	
 }
