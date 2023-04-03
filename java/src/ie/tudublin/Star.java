@@ -13,7 +13,6 @@ public class Star
     private float zG;
     private float absMag;
 
-    
 
     @Override
     public String toString() {

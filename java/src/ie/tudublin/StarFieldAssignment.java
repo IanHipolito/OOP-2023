@@ -6,6 +6,7 @@ public class StarFieldAssignment extends PApplet{
     
     StarsForAssignment[] stars = new StarsForAssignment[800];
 
+
     public void settings() {
         size(800, 800);
     }
