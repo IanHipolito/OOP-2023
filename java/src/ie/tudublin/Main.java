@@ -76,6 +76,12 @@ public class Main
 		processing.core.PApplet.runSketch( a, new StarField());
 	}
 
+	public static void sunslit()
+	{
+		String[] a = {"MAIN"};
+		processing.core.PApplet.runSketch( a, new SunSlit());
+	}
+
 	public static void main(String[] args)
 	{
 		System.out.println("Hello world");
