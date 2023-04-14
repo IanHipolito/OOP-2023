@@ -104,4 +104,7 @@ public class Star
         pa.textAlign(PApplet.LEFT, PApplet.CENTER);
         pa.text(displayName, x + 20, y);
     }
+
+    public void update() {
+    }
 }
