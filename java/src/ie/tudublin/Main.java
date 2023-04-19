@@ -82,6 +82,7 @@ public class Main
 		processing.core.PApplet.runSketch( a, new SunSlit());
 	}
 
+
 	public static void main(String[] args)
 	{
 		System.out.println("Hello world");
