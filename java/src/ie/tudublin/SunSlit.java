@@ -1,8 +1,20 @@
 package ie.tudublin;
 
 import processing.core.PApplet;
+import ddf.minim.AudioBuffer;
+import ddf.minim.AudioInput;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
 
 public class SunSlit extends PApplet {
+
+  Minim minim;
+  AudioPlayer ap;
+  AudioInput ai;
+  AudioBuffer ab;
+
+  float lerpedBuffer[] = new float[1024];
+  float smoothedAmplitude = 0;
 
   // RGB colors
   int[] sunColors = {
@@ -38,7 +50,9 @@ public class SunSlit extends PApplet {
       rect(x, y, w, h);
     }
 
-    void update() {
+    void update(float amplitude) {
+      float targetHeight = map(amplitude, 0, 1, 1, 40);
+      h = lerp(h, targetHeight, 0.2f);
       y -= 0.5;
 
       if (y < topSlitY) {
@@ -50,7 +64,7 @@ public class SunSlit extends PApplet {
   }
 
   public void settings() {
-    size(1200, 800);
+    size(1920, 1080, P3D);
   }
 
   public void setup() {
@@ -66,10 +80,22 @@ public class SunSlit extends PApplet {
       y += ((height / 2 + sunRadius) - topSlitY) / slits.length;
       h = map(y, topSlitY, height / 2 + sunRadius, 1.0f, 40.0f);
     }
+
+    minim = new Minim(this);
+    ap = minim.loadFile("java_bin_starryeyed.mp3", 1024);
+    ap.play();
+    ab = ap.mix;
   }
 
   public void draw() {
     background(bgColor);
+
+    float sum = 0;
+    for (int i = 0; i < lerpedBuffer.length; i++) {
+      lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
+      sum += abs(lerpedBuffer[i]);
+    }
+    smoothedAmplitude = sum / lerpedBuffer.length;
 
     noStroke();
     fill(sunColors[0]);
@@ -92,7 +118,7 @@ public class SunSlit extends PApplet {
     updatePixels();
 
     for (Rectangle r : slits) {
-      r.update();
+      r.update(sum);
       r.draw();
     }
   }
